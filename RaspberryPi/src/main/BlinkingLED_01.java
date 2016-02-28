@@ -12,7 +12,14 @@ import com.pi4j.io.gpio.RaspiPin;
  * 
  * This class (hopefully) perform a simple state
  * control of a GPIO pin on the Raspberry Pi.
- *
+ * 
+ * The circuit used to test the code is:
+ * 1) Generator (3.3 V) - Setting GPIO 0 as a output;
+ * 2) 220 Ohm resistor;
+ * 3) Led;
+ * 4) Ground (i.e. 0 V pin)
+ * In fact, using the Ohm's law: I=V/R=3.3/220=15mA (that is the current required by LEDs to emit light).
+ * 
  */
 
 public class BlinkingLED_01 {
@@ -21,24 +28,25 @@ public class BlinkingLED_01 {
 	final static GpioController gpio = GpioFactory.getInstance();
 	// Provisioning gpio pin #00 as an output pin and turn on
 	// so that the led at the beginning is off.
-	final static GpioPinDigitalOutput ledPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "led_1", PinState.HIGH);
+	final static GpioPinDigitalOutput ledPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "led_1", PinState.LOW);
 	
-	public static void main(String[] args) {
-		try {
-		System.out.println("#--- GPIO control started ---#");
+	public static void main(String[] args) throws InterruptedException {
 		// Setting shutdown state for the ledPin
-		ledPin.setShutdownOptions(true, PinState.HIGH);
-		System.out.println("[+] Led will start pulsating with 1 sec phase...");
+		ledPin.setShutdownOptions(true, PinState.LOW);
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			@Override
+			public void run() {
+				System.out.println("\n[*] Program interrupted. Exiting...");
+				gpio.shutdown();
+			}
+		});
+		System.out.println("#--- GPIO control started ---#");
+		System.out.println("[+] Led will start pulsating...");
 		System.out.println("[*] Press Ctrl-C to abort the program...");
+		System.out.println("#--------------------------------------#");
 		while (true) {
 			ledPin.pulse(1000, true);
-			Thread.sleep(1000);
-		}
-		// Stop all gpio activity/threads by shutting down the GPIO controller.
-		} catch (InterruptedException e) {
-			System.out.println("[*] Ctrl-C pushed...");
-			gpio.shutdown();
-			System.out.println("[+] Program aborted (the led should be off)...");
+			Thread.sleep(3000);
 		}
 	}
 }
