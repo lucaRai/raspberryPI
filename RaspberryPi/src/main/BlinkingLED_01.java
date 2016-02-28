@@ -24,13 +24,21 @@ public class BlinkingLED_01 {
 	final static GpioPinDigitalOutput ledPin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00, "led_1", PinState.HIGH);
 	
 	public static void main(String[] args) {
+		try {
 		System.out.println("#--- GPIO control started ---#");
 		// Setting shutdown state for the ledPin
 		ledPin.setShutdownOptions(true, PinState.HIGH);
 		System.out.println("[+] Led will start pulsating with 1 sec phase...");
 		System.out.println("[*] Press Ctrl-C to abort the program...");
-		ledPin.pulse(1000, true);
+		while (true) {
+			ledPin.pulse(1000, true);
+			Thread.sleep(1000);
+		}
 		// Stop all gpio activity/threads by shutting down the GPIO controller.
-		gpio.shutdown();
+		} catch (InterruptedException e) {
+			System.out.println("[*] Ctrl-C pushed...");
+			gpio.shutdown();
+			System.out.println("[+] Program aborted (the led should be off)...");
+		}
 	}
 }
