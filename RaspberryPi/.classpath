@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="/home/luca/javaLib/pi4j-1.0/lib/junit.jar"/>
+	<classpathentry kind="lib" path="/home/luca/javaLib/pi4j-1.0/lib/pi4j-core.jar" sourcepath="/home/luca/javaLib/pi4j-1.0/lib/pi4j-core-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/luca/javaLib/pi4j-1.0/lib/pi4j-core-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/luca/javaLib/pi4j-1.0/lib/pi4j-device.jar" sourcepath="/home/luca/javaLib/pi4j-1.0/lib/pi4j-device-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/luca/javaLib/pi4j-1.0/lib/pi4j-device-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/luca/javaLib/pi4j-1.0/lib/pi4j-example.jar" sourcepath="/home/luca/javaLib/pi4j-1.0/lib/pi4j-example-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/luca/javaLib/pi4j-1.0/lib/pi4j-example-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/luca/javaLib/pi4j-1.0/lib/pi4j-gpio-extension.jar" sourcepath="/home/luca/javaLib/pi4j-1.0/lib/pi4j-gpio-extension-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/luca/javaLib/pi4j-1.0/lib/pi4j-gpio-extension-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/luca/javaLib/pi4j-1.0/lib/pi4j-service.jar" sourcepath="/home/luca/javaLib/pi4j-1.0/lib/pi4j-service-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/home/luca/javaLib/pi4j-1.0/lib/pi4j-service-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
